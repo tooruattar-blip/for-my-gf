@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <title>For Calal 🤍</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500;700&family=Handlee&display=swap" rel="stylesheet">
 
   <style>
-    /* Prevent side scrolling and ensure full height */
+    /* Use dvh (Dynamic Viewport Height) for mobile browsers to account for address bars */
     html, body {
-      overflow-x: hidden;
+      overflow: hidden;
       width: 100%;
       height: 100%;
-      position: relative;
+      height: 100dvh; 
+      position: fixed; /* Prevents "pull-to-refresh" on mobile */
     }
 
     body {
@@ -26,6 +27,7 @@
       justify-content: center;
       align-items: center;
       -webkit-tap-highlight-color: transparent;
+      touch-action: none; /* Prevents accidental zooming/scrolling */
     }
 
     @keyframes gradientBG {
@@ -34,25 +36,24 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Floating main card */
     .float-card {
       animation: floatCard 5s ease-in-out infinite;
       will-change: transform;
+      z-index: 20;
     }
 
     @keyframes floatCard {
       0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(1deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
     }
 
-    /* Elegant rising elements */
     .heart {
       position: fixed;
       bottom: -10%;
       user-select: none;
       pointer-events: none;
       animation: rise 6s linear forwards;
-      z-index: 0;
+      z-index: 5;
       will-change: transform;
     }
 
@@ -62,40 +63,30 @@
       100% { transform: translateY(-120vh) translateX(40px) scale(1.5); opacity: 0; }
     }
 
-    /* Polaroid improvements */
     .polaroid {
       background: white;
-      padding: 6px 6px 20px 6px;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+      padding: 5px 5px 15px 5px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       border-radius: 4px;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.3s ease;
     }
 
-    .polaroid:hover {
-      transform: scale(1.15) rotate(0deg) !important;
-      z-index: 50;
-      box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
-    }
-
-    /* Button effects */
+    /* Pulse effect optimized for mobile */
     .pulse-yes {
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.5); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(236, 72, 153, 0); }
-      100% { transform: scale(1); }
+      0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(236, 72, 153, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
     }
 
-    #noBtn {
-      touch-action: manipulation;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    .custom-scroll {
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
     }
-
-    /* Smooth Scrolling for Letter */
-    .custom-scroll::-webkit-scrollbar { width: 5px; }
-    .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+    
+    .custom-scroll::-webkit-scrollbar { width: 4px; }
     .custom-scroll::-webkit-scrollbar-thumb { background: #fbcfe8; border-radius: 10px; }
 
     .spin-music {
@@ -106,151 +97,92 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-
-    /* Animation for text loading */
-    .fade-up {
-      animation: fadeUp 1s ease-out forwards;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 
 <body>
-
   <div id="bg-elements"></div>
 
-  <div class="float-card fade-up relative bg-white/70 backdrop-blur-2xl rounded-[3rem] shadow-[0_20px_60px_rgba(0,0,0,0.1)] p-7 sm:p-9 max-w-[350px] w-[92%] text-center border-[6px] border-white/80 z-10">
+  <div class="float-card relative bg-white/75 backdrop-blur-xl rounded-[2.5rem] shadow-2xl p-6 sm:p-8 max-w-[340px] w-[90%] text-center border-[4px] border-white/90 overflow-hidden">
     
-    <span class="absolute -top-5 -left-2 text-4xl">🌸</span>
-    <span class="absolute -bottom-5 -right-2 text-4xl">🎀</span>
+    <span class="absolute top-2 left-4 text-2xl">🌸</span>
+    <span class="absolute top-2 right-4 text-2xl">🎀</span>
 
-    <h1 class="text-4xl font-bold text-pink-500 mb-2 tracking-tight" style="font-family: 'Handlee', cursive;">
+    <h1 class="text-3xl font-bold text-pink-500 mb-1" style="font-family: 'Handlee', cursive;">
       hey calal 🤍
     </h1>
 
-    <p class="text-gray-400 mb-8 text-[10px] tracking-[0.2em] uppercase font-bold">
+    <p class="text-gray-400 mb-6 text-[9px] tracking-[0.2em] uppercase font-bold">
       specially for you
     </p>
 
-    <div class="flex justify-center gap-2 mb-12 relative h-32">
-      <div class="polaroid absolute left-0 rotate-[-12deg] delay-100">
-        <img src="photo1.jpeg" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-sm" onerror="this.src='https://via.placeholder.com/100?text=Us'"/>
+    <div class="flex justify-center gap-2 mb-10 relative h-24">
+      <div class="polaroid absolute left-2 rotate-[-10deg]">
+        <img src="photo1.jpeg" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-sm" onerror="this.src='https://via.placeholder.com/100?text=🤍'"/>
       </div>
-      <div class="polaroid absolute left-1/2 -translate-x-1/2 -top-3 rotate-[2deg] delay-200">
-        <img src="photo2.jpeg" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-sm" onerror="this.src='https://via.placeholder.com/100?text=Us'"/>
+      <div class="polaroid absolute left-1/2 -translate-x-1/2 -top-2 rotate-[2deg]">
+        <img src="photo2.jpeg" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-sm" onerror="this.src='https://via.placeholder.com/100?text=✨'"/>
       </div>
-      <div class="polaroid absolute right-0 rotate-[12deg] delay-300">
-        <img src="photo3.png" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-sm" onerror="this.src='https://via.placeholder.com/100?text=Us'"/>
+      <div class="polaroid absolute right-2 rotate-[10deg]">
+        <img src="photo3.png" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-sm" onerror="this.src='https://via.placeholder.com/100?text=🌸'"/>
       </div>
     </div>
 
-    <div class="custom-scroll bg-white/50 rounded-[2rem] p-6 mb-8 text-left text-gray-700 text-sm leading-relaxed max-h-[240px] overflow-y-auto border border-pink-100 shadow-inner">
-      <p class="mb-4">
-        i don’t like you just because you’re cute 
-        <span class="text-pink-400 font-bold">(even though you are and i love you)</span>.
-      </p>
-
-      <p class="mb-4">
-        it’s everything combined.  
-        your vibe is different. you’re genuinely my type.
-      </p>
-
-      <p class="mb-4 font-medium text-pink-600 bg-pink-50/50 p-2 rounded-xl border border-pink-50">
-        you’re a little weird — but in the best way.
-        random, unexpected, sometimes lowkey unhinged,
-        and somehow it fits me perfectly.
-      </p>
-
-      <p class="mb-4">
-        what really hits is how you match my energy.
-        when i do random dumb stuff, most people get annoyed.
-      </p>
-
-      <p class="mb-4 italic opacity-80">
-        you don’t. you stay normal. you even go along with it. you never make me feel weird for being myself.
-      </p>
-
-      <p class="mb-4">
-        we like the same movies, music, humor.
-        we laugh at the same dumb things.
-        talking to you feels easy — 
-        like you just get it.
-      </p>
-
-      <p class="mb-4">
-        around you, i don’t have to tone myself down.
-        no fake calm, no filter.
-        i can just be me.
-      </p>
-
-      <p class="mb-4 font-bold text-gray-800">
-        you’re a 10/10 to me.
-        not glazing — just facts.
-      </p>
-
-      <p class="text-pink-500 font-medium">
-        and the way you let me be clingy —
-        sleeping on your shoulder, 
-        playing with my hair, 
-        holding hands —
-        that’s literally my love language.
-      </p>
+    <div class="custom-scroll bg-white/50 rounded-2xl p-4 mb-6 text-left text-gray-700 text-xs sm:text-sm leading-relaxed max-h-[180px] overflow-y-auto border border-pink-100">
+      <p class="mb-3">i don’t like you just because you’re cute <span class="text-pink-400 font-bold">(even though you are)</span>.</p>
+      <p class="mb-3">it’s everything combined. your vibe is different. you’re genuinely my type.</p>
+      <p class="mb-3 font-medium text-pink-600 bg-pink-50/50 p-2 rounded-lg">you’re a little weird — but in the best way. random, unexpected, sometimes unhinged, and it fits me perfectly.</p>
+      <p class="mb-3">what really hits is how you match my energy. when i do random dumb stuff, you stay normal. you even go along with it.</p>
+      <p class="mb-3 italic opacity-80">talking to you feels easy — like you just get it. i can just be me.</p>
+      <p class="font-bold text-gray-800">you’re a 10/10 to me. not glazing — just facts. 🤍</p>
     </div>
 
     <div id="askArea">
-      <h2 class="text-2xl font-bold text-gray-800 mb-7 px-2">will you be my girlfriend?</h2>
-      <div class="flex justify-center gap-5 mb-4 h-14 items-center">
-        <button id="yesBtn" onclick="sayYes()" class="pulse-yes px-10 py-3 rounded-full bg-pink-500 text-white font-bold shadow-lg z-20 transition-all active:scale-90">
+      <h2 class="text-xl font-bold text-gray-800 mb-6">will you be my girlfriend?</h2>
+      <div class="flex justify-center gap-4 mb-2 h-12 items-center relative">
+        <button id="yesBtn" onclick="sayYes()" class="pulse-yes px-8 py-2.5 rounded-full bg-pink-500 text-white font-bold shadow-lg z-30 active:scale-95 transition-transform">
           yes
         </button>
-        <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()" class="px-8 py-3 rounded-full bg-gray-200 text-gray-500 font-bold active:scale-95 shadow-sm">
+        <button id="noBtn" onclick="moveNo()" onmouseover="moveNo()" class="px-6 py-2.5 rounded-full bg-gray-200 text-gray-500 font-bold shadow-sm transition-all duration-200">
           no
         </button>
       </div>
     </div>
 
-    <div id="message" class="hidden animate-bounce text-center mb-6">
-       <p class="text-2xl font-bold text-pink-600">
-         THANK YOU 🤍<br/>
-         <span class="text-sm font-medium tracking-wide">YOU LIGHT UP MY WHOLE DAY</span>
-       </p>
+    <div id="message" class="hidden animate-bounce py-4">
+        <p class="text-xl font-bold text-pink-600">
+          THANK YOU 🤍<br/>
+          <span class="text-[10px] font-medium tracking-widest uppercase">You made my day</span>
+        </p>
     </div>
 
-    <div class="bg-white/60 rounded-[1.5rem] p-4 flex gap-4 items-center border border-white mt-6 shadow-sm">
-      <div class="relative">
-        <img id="albumArt" src="album.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-pink-200" onerror="this.src='https://via.placeholder.com/50?text=♫'"/>
-        <div class="absolute inset-0 rounded-full border border-pink-100 animate-ping opacity-30"></div>
-      </div>
-      <div class="flex-1 text-left">
-        <p class="text-[10px] font-bold text-pink-400 uppercase tracking-tighter">Now Playing</p>
-        <p class="text-xs font-bold text-gray-700">our song 🎵</p>
+    <div class="bg-white/80 rounded-2xl p-3 flex gap-3 items-center border border-white mt-4 shadow-sm">
+      <img id="albumArt" src="album.jpg" class="w-10 h-10 rounded-full object-cover border-2 border-pink-200" onerror="this.src='https://via.placeholder.com/50?text=♫'"/>
+      <div class="flex-1 text-left overflow-hidden">
+        <p class="text-[8px] font-bold text-pink-400 uppercase tracking-tighter">Now Playing</p>
+        <p class="text-[10px] font-bold text-gray-700 truncate">our song 🎵</p>
         <audio id="music" src="song.mp3" loop preload="auto"></audio>
-        <div class="flex items-center gap-3 mt-1">
-          <button id="playBtn" onclick="togglePlay()" class="text-pink-500 text-xl font-bold hover:scale-110 transition-transform">▶</button>
-          <input id="progress" type="range" value="0" class="w-full h-1 bg-pink-100 rounded-lg appearance-none accent-pink-500 cursor-pointer" />
+        <div class="flex items-center gap-2">
+          <button id="playBtn" onclick="togglePlay()" class="text-pink-500 text-lg font-bold">▶</button>
+          <input id="progress" type="range" value="0" class="w-full h-1 bg-pink-100 rounded-lg appearance-none accent-pink-500" />
         </div>
       </div>
     </div>
   </div>
 
 <script>
-  // More beautiful spawning
   function spawnHeart() {
+    const container = document.getElementById('bg-elements');
     const h = document.createElement("div");
     h.className = "heart";
-    const emoji = ['💗', '🌸', '✨', '🤍', '☁️', '🎀', '🍭', '🍓'];
+    const emoji = ['💗', '🌸', '✨', '🤍', '🎀', '🍓'];
     h.innerText = emoji[Math.floor(Math.random() * emoji.length)];
-    h.style.left = Math.random() * 92 + "vw"; 
-    h.style.fontSize = Math.random() * 20 + 15 + "px";
-    h.style.animationDuration = Math.random() * 2 + 4 + "s";
-    document.getElementById('bg-elements').appendChild(h);
+    h.style.left = Math.random() * 95 + "vw"; 
+    h.style.fontSize = Math.random() * 15 + 15 + "px";
+    container.appendChild(h);
     setTimeout(() => h.remove(), 6000);
   }
-  setInterval(spawnHeart, 450);
+  setInterval(spawnHeart, 500);
 
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
@@ -264,27 +196,30 @@
   let scale = 1;
 
   function moveNo() {
-    // Better teleportation bounds
-    const x = Math.random() * 160 - 80;
-    const y = Math.random() * 100 - 50;
+    // Keeps the button within the card area so it doesn't disappear on small screens
+    const maxX = 50;
+    const maxY = 30;
+    const x = (Math.random() - 0.5) * maxX * 2;
+    const y = (Math.random() - 0.5) * maxY * 2;
+    
     noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    scale += 0.15;
-    yesBtn.style.transform = `scale(${scale})`;
+    
+    // Limits the growth of the Yes button so it doesn't break the layout
+    if (scale < 2.5) {
+      scale += 0.15;
+      yesBtn.style.transform = `scale(${scale})`;
+    }
   }
 
   function sayYes() {
-    askArea.style.opacity = '0';
-    setTimeout(() => {
-      askArea.classList.add('hidden');
-      msg.classList.remove("hidden");
-    }, 300);
-    // Celebration blast
-    for(let i=0; i<40; i++) setTimeout(spawnHeart, i*40);
+    askArea.style.display = 'none';
+    msg.classList.remove("hidden");
+    for(let i=0; i<30; i++) setTimeout(spawnHeart, i*50);
   }
 
   function togglePlay() {
     if (music.paused) {
-      music.play().catch(e => console.log("Gesture required"));
+      music.play();
       playBtn.textContent = "⏸";
       albumArt.classList.add("spin-music");
     } else {
